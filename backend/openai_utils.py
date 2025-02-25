@@ -52,7 +52,6 @@ def summarize_text_gemini(text: str) -> str:
         model = genai.GenerativeModel("gemini-1.5-pro-latest")  
         response = model.generate_content(prompt)
         summary = response.text.strip()
-        print("faiz"+summary)
         return summary
     except Exception as e:
         print("Gemini summarization error:", e)

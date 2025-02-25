@@ -32,7 +32,7 @@ Ticket Genius is an AI-driven intelligent process automation system designed to 
 ### Prerequisites
 - Python 3.8+
 - Node.js & npm
-- PostgreSQL/MySQL database
+- MySQL database
 - OpenAI API key (or Gemini API key)
 
 ### Backend Setup
@@ -65,7 +65,7 @@ npm start
 
 ## API Endpoints
 ### User Authentication
-- **`POST /login`** - Authenticates user and provides JWT token.
+- **`POST /login`** - Authenticates user and provides JWT token will add it later.
 
 ### Ticket Management
 - **`POST /tickets/`** - Create a new ticket.
