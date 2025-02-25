@@ -1,90 +1,99 @@
-Ticket Genius - AI-Powered IT Support System
- Ticket Genius is an AI-powered IT support system that automates ticket classification, summarization, resolution suggestions, and chatbot interactions for engineers.
+# Ticket Genius - AI-Powered IT Support Ticketing System
 
- Features
-  AI Ticket Classification – Classifies tickets dynamically based on descriptions using NLP.
-  Summarization – Automatically summarizes ticket descriptions for quick resolution.
-  AI Chatbot – An interactive chatbot to assist engineers in resolving tickets.
-  OCR & Document Processing – Extracts text from uploaded documents for AI analysis.
-  Intelligent Ticket Routing – Assigns tickets to appropriate teams based on AI analysis.
-  Real-Time Insights – Engineers can view open tickets, trends, and automated resolutions.
+## Overview
+Ticket Genius is an AI-driven intelligent process automation system designed to streamline IT support ticket management. It leverages Natural Language Processing (NLP), AI classification, sentiment analysis, and machine learning to automate ticket classification, routing, resolution suggestions, document processing, and real-time insights.
 
- Technologies Used
+## Features
+- **AI-Powered Ticket Lifecycle Automation**
+  - Dynamic classification of tickets without hardcoded rules.
+  - Sentiment analysis for urgency detection.
+  - Automatic assignment to the right team and engineer.
+  
+- **Automated Ticket Summarization & Resolution Suggestions**
+  - AI generates concise summaries of ticket descriptions.
+  - Provides AI-driven resolution suggestions based on historical data.
 
-Backend (FastAPI + AI Processing)
-FastAPI – High-performance API framework.
-SQLAlchemy – Database ORM.
-MySQL – Database for storing tickets and users.
-Spacy – NLP library for text processing.
-Google Gemini AI – Used for AI-powered classification & chatbot interactions.
-Pydantic – Data validation.
-OpenAI API (optional) – For alternative chatbot capabilities.
-Frontend (React + Bootstrap)
-React.js – Frontend framework.
-React Bootstrap – UI components for a professional design.
-Fetch API – For making API calls.  
+- **AI-Driven Document Processing**
+  - OCR-based extraction of key information from uploaded documents (e.g., invoices, error logs, warranty cards).
 
-Setup Instructions
+- **Chatbot Support for Engineers**
+  - Engineers can chat with AI to retrieve ticket details, summaries, and resolution steps.
+  - Provides real-time troubleshooting guidance.
 
-Backend (FastAPI) Setup
-Clone the repository
-git clone https://github.com/yourusername/ticket-genius.git
-cd ticket-genius/backend
-Create a virtual environment & install dependencies
+## Tech Stack
+- **Frontend:** React.js, Bootstrap
+- **Backend:** FastAPI, Python
+- **Database:** PostgreSQL/MySQL
+- **AI Models:** Gemini AI (Google), OpenAI GPT, OCR for document extraction
+- **Authentication:** JWT-based authentication
+- **Deployment:** Docker, AWS/GCP
+
+## Installation & Setup
+### Prerequisites
+- Python 3.8+
+- Node.js & npm
+- PostgreSQL/MySQL database
+- OpenAI API key (or Gemini API key)
+
+### Backend Setup
+```bash
+# Clone the repository
+git clone https://github.com/mavishsiraj/Ticket_Genius.git
+cd Ticket_Genius/backend
+
+# Create a virtual environment
 python -m venv venv
-source venv/bin/activate  # For macOS/Linux
-venv\Scripts\activate     # For Windows
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+
+# Install dependencies
 pip install -r requirements.txt
-Set up environment variables
-export OPENAI_API_KEY="your_openai_key"
-export DATABASE_URL="mysql+pymysql://user:password@localhost/ticket_db"
-Run the FastAPI server
+
+# Set environment variables (Linux/Mac)
+export OPENAI_API_KEY="your-api-key"
+
+# Run the FastAPI server
 uvicorn main:app --reload
-Access API docs:
-  Open http://127.0.0.1:8000/docs for interactive Swagger UI.
+```
 
-Frontend (React) Setup
-Go to frontend directory & install dependencies
+### Frontend Setup
+```bash
 cd ../frontend
+
+# Install dependencies
 npm install
-Run the frontend app
+
+# Start the React app
 npm start
-Access the app:
-Open http://localhost:3000 in your browser.
+```
 
-API Endpoints
-Authentication
-POST /login – Authenticate user and get a JWT token.
-Ticket Management
-POST /tickets/ – Create a new ticket.
-GET /tickets/ – Get all tickets.
-GET /tickets/{ticket_id} – Get a specific ticket by ID.
-PUT /tickets/{ticket_id} – Update ticket details.
-DELETE /tickets/{ticket_id} – Delete a ticket.
-Chatbot
-POST /chatbot/ – AI-powered IT chatbot interaction.
-Document Processing
-POST /process_document/ – Upload and process documents (OCR & AI analysis).
+## API Endpoints
+### User Authentication
+- **`POST /login`** - Authenticates user and provides JWT token.
 
-Project Structure
+### Ticket Management
+- **`POST /tickets/`** - Create a new ticket.
+- **`GET /tickets/`** - Retrieve all tickets.
+- **`GET /tickets/{ticket_id}/`** - Fetch ticket details.
+- **`PUT /tickets/{ticket_id}/`** - Update ticket status or details.
+- **`DELETE /tickets/{ticket_id}/`** - Delete a ticket.
 
-ticket-genius/
-│── backend/
-│   ├── main.py              # FastAPI backend
-│   ├── models.py            # Database models
-│   ├── schemas.py           # Pydantic schemas
-│   ├── crud.py              # CRUD operations
-│   ├── database.py          # Database setup
-│   ├── openai_utils.py      # AI-related functions
-│── frontend/
-│   ├── src/
-│   │   ├── components/      # Reusable UI components
-│   │   ├── pages/           # Main pages
-│   │   ├── api/             # API calls
-│   │   ├── App.js           # Main app file
-│   │   ├── index.js         # Entry point
-│── public/
-│── README.md                # Project documentation
-│── requirements.txt         # Python dependencies
-│── package.json             # Frontend dependencies
+### AI Features
+- **`POST /process_document/`** - Extracts key details from uploaded files.
+- **`POST /chatbot/`** - AI-powered chatbot for engineers.
+
+## Expected Outcomes
+- **Faster Ticket Resolutions:** AI-driven classification and routing.
+- **Reduced Workload:** Automated resolution suggestions for engineers.
+- **Improved User Experience:** Quick issue handling and better insights for IT managers.
+
+## Contributors
+- **Taiba Siraj** - Lead Developer
+- **OpenAI/Gemini AI** - AI Model Integration
+- **Community Contributions Welcome!**
+
+## License
+This project is licensed under the MIT License. Feel free to contribute!
+
+## Contact
+For any queries, reach out via [LinkedIn](https://www.linkedin.com/in/taiba-siraj/) or email at **mavishsiraj1@gmail.com**.
 
