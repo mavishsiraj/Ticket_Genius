@@ -48,9 +48,6 @@ source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 # Install dependencies
 pip install -r requirements.txt
 
-# Set environment variables (Linux/Mac)
-export OPENAI_API_KEY="your-api-key"
-
 # Run the FastAPI server
 uvicorn main:app --reload
 ```
