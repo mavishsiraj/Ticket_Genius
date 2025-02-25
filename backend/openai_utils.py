@@ -3,10 +3,7 @@ import json
 genai.configure(api_key="AIzaSyCZ8UXzF6YCtaX20_aE_XjIjxt3N2sDVA4")
 
 def classify_ticket_gemini(description: str) -> str:
-    """
-    Uses Google's Generative AI (hypothetically Gemini) to determine the ticket category.
-    This example assumes the API exposes a GenerativeModel class that you can use to generate text.
-    """
+    
     prompt = (
         "You are an expert IT support assistant. Based on the following ticket description, "
         "determine the most appropriate category that best describes the issue. "
@@ -14,7 +11,7 @@ def classify_ticket_gemini(description: str) -> str:
         f"Ticket Description: {description}"
     )
     try:
-        model = genai.GenerativeModel("gemini-pro")  
+        model = genai.GenerativeModel("gemini-1.5-pro-latest")  
         
         response = model.generate_content(prompt)
         
@@ -25,31 +22,23 @@ def classify_ticket_gemini(description: str) -> str:
         return "General Inquiry"
     
 def get_dynamic_resolution_gemini(ticket_description: str) -> str:
-    """
-    Uses Google's hypothetical Gemini API to generate an actionable resolution suggestion for the ticket.
-    The prompt instructs the assistant to provide a concise and actionable resolution in one or two sentences.
-    Return only the resolution text with no extra commentary.
-    """
+    
     prompt = (
-        "You are a seasoned IT support assistant. Based on the following ticket description, "
-        "provide a concise and actionable resolution suggestion in one or two sentences. "
-        "Return only the resolution text with no extra commentary.\n\n"
-        f"Ticket Description: {ticket_description}"
+    "You are a seasoned IT support assistant. Based on the following ticket description, "
+    "provide a concise and actionable resolution suggestion in one or two sentences. "
+    "Return only the resolution text with no extra commentary.\n\n"
+    f"Ticket Description: {ticket_description}"
     )
     try:
-        model = genai.GenerativeModel("gemini-pro")  
+        model = genai.GenerativeModel("gemini-1.5-pro-latest")
         response = model.generate_content(prompt)
         resolution = response.text.strip()
-        print("taiba"+resolution)
         return resolution
     except Exception as e:
         print("Gemini resolution error:", e)
         return "Please consult with a support engineer for further assistance."
 def summarize_text_gemini(text: str) -> str:
-    """
-    Uses Google's hypothetical Gemini API to generate a concise summary of the ticket description.
-    If the text is very short, it returns the text unchanged.
-    """
+    
     if len(text.split()) < 20:
         return text
 
@@ -60,7 +49,7 @@ def summarize_text_gemini(text: str) -> str:
     )
     
     try:
-        model = genai.GenerativeModel("gemini-pro")  
+        model = genai.GenerativeModel("gemini-1.5-pro-latest")  
         response = model.generate_content(prompt)
         summary = response.text.strip()
         print("faiz"+summary)
@@ -80,7 +69,7 @@ def summarize_document(document_text: str) -> str:
     )
 
     try:
-        model = genai.GenerativeModel("gemini-pro")
+        model = genai.GenerativeModel("gemini-1.5-pro-latest")
 
         response = model.generate_content(prompt)
 
@@ -107,7 +96,7 @@ def analyze_sentiment_gemini(ticket_description: str) -> tuple:
     )
 
     try:
-        model = genai.GenerativeModel("gemini-pro")
+        model = genai.GenerativeModel("gemini-1.5-pro-latest")
 
         response = model.generate_content(prompt)
 

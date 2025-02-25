@@ -16,11 +16,12 @@ class TicketOut(BaseModel):
     classification: Optional[str] = None
     summary: Optional[str] = None
     suggested_resolution: Optional[str] = None
-    assigned_team: Optional[str] = None
+    assigned_team_name: Optional[str] = None
+    assigned_engineer_name: Optional[str] = None
     priority: Optional[str] = "Medium"  
     created_at: datetime
 
-    model_config = ConfigDict(from_attributes=True)
+    
 
 class TicketUpdate(BaseModel):
     subject: Optional[str] = None

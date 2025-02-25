@@ -97,6 +97,14 @@ def create_ticket_endpoint(ticket: schemas.TicketCreate, db: Session = Depends(g
         summary = summarize_text_gemini(ticket.description)
         suggested_resolution = get_dynamic_resolution_gemini(ticket.description)
         team_id, engineer_id = assign_team_and_engineer_db(db, classification)
+        team_name = None
+        if team_id:
+            team = db.query(models.Team).filter(models.Team.id == team_id).first()
+            team_name = team.team_name if team else None 
+        engineer_name = None
+        if engineer_id:
+            engineer = db.query(models.Engineer).filter(models.Engineer.id == engineer_id).first()
+            engineer_name = engineer.name if engineer else None
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"AI processing error: {str(e)}")
     
@@ -109,7 +117,22 @@ def create_ticket_endpoint(ticket: schemas.TicketCreate, db: Session = Depends(g
     db_ticket.suggested_resolution = suggested_resolution
     db.commit()
     db.refresh(db_ticket)
-    return db_ticket
+    return {
+        "id": db_ticket.id,
+        "user_id": db_ticket.user_id,
+        "subject": db_ticket.subject,
+        "description": db_ticket.description,
+        "status": db_ticket.status,
+        "classification": db_ticket.classification,
+        "summary": db_ticket.summary,
+        "suggested_resolution": db_ticket.suggested_resolution, 
+        "assigned_team_name": team_name,   
+        "assigned_engineer_name": engineer_name, 
+        "priority": db_ticket.priority,
+        "created_at":db_ticket.created_at
+
+        
+    }
 
 # Endpoint: GET /tickets/
 @app.get("/tickets/", response_model=List[schemas.TicketOut])
@@ -160,7 +183,7 @@ class ChatRequest(BaseModel):
 @app.post("/chatbot/")
 def chatbot_interaction(request: ChatRequest, db: Session = Depends(get_db)):
     try:
-        model = genai.GenerativeModel("gemini-pro")
+        model = genai.GenerativeModel("gemini-1.5-pro-latest")
         messages = [{"role": "user", "content": q} for q in request.history]
         messages.append({"role": "user", "content": request.query})
 
