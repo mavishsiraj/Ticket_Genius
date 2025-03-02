@@ -45,43 +45,6 @@ def get_db():
         db.close()
 
 nlp = spacy.load("en_core_web_sm")
-"""
-def create_access_token(data: dict, expires_delta: timedelta):  
-    to_encode = data.copy()
-    expire = datetime.utcnow() + expires_delta
-    to_encode.update({"sub": str(to_encode["sub"])})  
-    to_encode.update({"exp": expire})
-    
-    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-    return encoded_jwt
-
-def verify_token(token: str):
-    try:
-        print("Received Token:", token)  
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        print("Decoded Payload:", payload)  
-        return payload
-    except jwt.ExpiredSignatureError:
-        raise HTTPException(status_code=401, detail="Token expired")
-    except JWTError as e:
-        print("JWT Error:", e)  
-        raise HTTPException(status_code=401, detail="Invalid token")
-
-def get_current_user(token: str = Depends(oauth2_scheme)):
-    payload = verify_token(token)
-    return payload
-
-@app.post("/login")
-def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
-    user = db.query(models.User).filter(models.User.id == form_data.username).first()
-
-    if not user or not verify_password(form_data.password, user.password):
-        raise HTTPException(status_code=400, detail="Incorrect username or password")
-
-    access_token = create_access_token({"sub": user.id}, timedelta(hours=2))  
-
-    return {"access_token": access_token, "token_type": "bearer"}
-"""
 
 # Endpoint: POST /tickets/
 @app.post("/tickets/", response_model=schemas.TicketOut)
