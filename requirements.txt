@@ -1,0 +1,38 @@
+# Core
+fastapi==0.121.0
+uvicorn[standard]==0.38.0
+pydantic==2.12.4
+python-dotenv==1.2.1
+
+# Database
+sqlalchemy<1.5.0,>=1.4.42  # Updated to be compatible with databases
+databases[sqlite]==0.8.0
+alembic==1.14.0
+
+# Authentication
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.9
+bcrypt==5.0.0  # Explicitly added as it's a direct dependency
+
+# AI/ML
+comet-ml==3.41.0
+openai==1.63.0
+sentence-transformers==5.1.2
+torch==2.9.0
+transformers==4.57.1
+spacy==3.7.4
+google-generativeai==0.8.5  # Added Gemini API
+
+# Utils
+httpx==0.27.0
+Pillow==12.0.0
+nltk==3.8.1
+filetype==1.2.0
+comet-llm>=1.0.0
+
+# Google AI Dependencies
+google-ai-generativelanguage==0.6.15
+google-api-core==2.28.1
+google-api-python-client==2.187.0
+google-auth>=2.15.0
